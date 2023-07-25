@@ -1,0 +1,106 @@
+.notes-container__add-note-button dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.592);
+}
+
+.notes-container__add-note-button dialog {
+  width: 30%;
+  height: 450px;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  padding: 20px 20px;
+  background-color: var(--less-light);
+}
+
+.notes-container__add-note-button dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notes-container__add-note-button dialog form h3 {
+  color: var(--dark);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.add-note-button__modal__note-heading {
+  flex: 1;
+  outline: none;
+  height: 25%;
+  width: 100%;
+  font-size: 18px;
+  padding: 10px;
+  color: var(--dark);
+  border-radius: 12px;
+  border: 1px dashed var(--less-dark);
+  background-color: transparent;
+}
+
+.add-note-button__modal__note-description {
+  flex: 2;
+  resize: none;
+  width: 100%;
+  height: 50%;
+  font-size: 18px;
+  padding: 10px;
+  color: var(--dark);
+  border-radius: 12px;
+  border: 1px dashed var(--less-dark);
+  outline: none;
+  background-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.add-note-button__modal__note-heading:focus,
+.add-note-button__modal__note-description:focus {
+  border: 1px dashed var(--blue);
+}
+
+.notes-container__add-note-button dialog form .modal-buttons {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 25%;
+}
+
+.modal-buttons .add-note-button__modal__note-cancel {
+  background-color: red;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--dark);
+}
+
+.modal-buttons .add-note-button__modal__note-update {
+  background-color: var(--blue);
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--dark);
+}
+
+.modal-buttons .add-note-button__modal__note-cancel:hover {
+  background-color: rgb(138, 0, 0);
+}
+
+.modal-buttons .add-note-button__modal__note-update:hover {
+  background-color: var(--blue-hover);
+}

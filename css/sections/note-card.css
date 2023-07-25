@@ -1,0 +1,93 @@
+.notes-container__add-note-button {
+  width: 400px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--dark);
+  border-radius: 22px;
+  cursor: pointer;
+  color: var(--dark);
+}
+
+.notes-container__add-note-button i {
+  font-size: 72px;
+  font-weight: 200;
+}
+
+.notes-container__note-card {
+  width: 400px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 2px solid var(--dark);
+  border-radius: 22px;
+  padding: 10px 15px;
+  color: var(--dark);
+}
+
+.note-card__heading {
+  margin-bottom: 5px;
+}
+
+.note-card__heading h3 {
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.note-card__description {
+  flex: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.note-card__timing {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 5px;
+}
+
+.note-card__timing__time-added span,
+.note-card__timing__time-edited span {
+  width: 50%;
+  font-size: 14px;
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.note-card__options {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.note-card__options__delete {
+  width: 100px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px var(--dark);
+}
+
+.note-card__options__edit {
+  padding: 10px;
+  color: #fff;
+  background-color: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 7px var(--dark);
+}

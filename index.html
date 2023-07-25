@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/f452985fec.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header__total-tasks">
+          <p>Total Notes <span>12</span></p>
+        </div>
+        <div class="header__search-bar">
+          <input type="text" placeholder="Search Notes here..." />
+          <i class="bx bx-search"></i>
+        </div>
+        <div class="header__theme-switcher">
+          <i class="theme-switcher__icon bi bi-sun"></i>
+        </div>
+      </header>
+      <main>
+        <section class="filter">
+          <h2>Notes</h2>
+          <i class="bx bx-filter"></i>
+        </section>
+        <section class="notes-container">
+          <div class="notes-container__add-note-button">
+            <i class="bi bi-plus"></i>
+            <dialog class="add-note-button__modal">
+              <form action="#">
+                <h3>Add Note</h3>
+                <input
+                  type="text"
+                  class="add-note-button__modal__note-heading"
+                  placeholder="Note Title here..."
+                />
+                <textarea
+                  name="note-description"
+                  class="add-note-button__modal__note-description"
+                  cols="30"
+                  rows="10"
+                  placeholder="Note Description here..."
+                ></textarea>
+                <div class="modal-buttons">
+                  <input
+                    type="button"
+                    value="Cancel"
+                    class="add-note-button__modal__note-cancel"
+                  />
+                  <input
+                    type="submit"
+                    value="Add"
+                    class="add-note-button__modal__note-update"
+                  />
+                </div>
+              </form>
+            </dialog>
+          </div>
+          <div class="notes-container__note-card">
+            <div class="note-card__heading">
+              <h3>Take Umbrella to Uni</h3>
+            </div>
+            <div class="note-card__description">
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Adipisci magnam eaque possimus labore!
+              </p>
+            </div>
+            <div class="note-card__timing">
+              <div class="note-card__timing__time-added">
+                <span
+                  >Added:<br />
+                  12 September 2023 at 02:45 p.m</span
+                >
+              </div>
+              <div class="note-card__timing__time-edited">
+                <span
+                  >Last edited:<br />
+                  5 July 2071 at 05:00 a.m</span
+                >
+              </div>
+            </div>
+            <div class="note-card__options">
+              <button class="note-card__options__delete">Delete</button>
+              <i class="note-card__options__edit bx bxs-edit"></i>
+              <dialog class="edit-note-button__modal">
+                <form action="#">
+                  <h3>Edit Note</h3>
+                  <input
+                    type="text"
+                    class="edit-note-button__modal__note-heading"
+                    placeholder="Note Title here..."
+                  />
+                  <textarea
+                    name="note-description"
+                    class="edit-note-button__modal__note-description"
+                    cols="30"
+                    rows="10"
+                    placeholder="Note Description here..."
+                  ></textarea>
+                  <div class="modal-buttons">
+                    <input
+                      type="button"
+                      value="Cancel"
+                      class="edit-note-button__modal__note-cancel"
+                    />
+                    <input
+                      type="submit"
+                      value="Update"
+                      class="edit-note-button__modal__note-update"
+                    />
+                  </div>
+                </form>
+              </dialog>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
