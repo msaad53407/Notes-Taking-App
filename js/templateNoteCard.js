@@ -18,12 +18,14 @@ export const getDate = (targetElement, message) => {
 const openModal = (targetModal) => {
     return function () {
         targetModal.showModal()
+        targetModal.classList.add('active')
     }
 }
 
 const closeModal = (targetModal) => {
     return function () {
         targetModal.close()
+        targetModal.classList.remove('active')
     }
 }
 

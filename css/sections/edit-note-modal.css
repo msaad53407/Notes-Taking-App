@@ -3,8 +3,8 @@
 }
 
 .edit-note-button__modal {
-  width: 600px;
-  height: 450px;
+  width: 0;
+  height: 0;
   position: fixed;
   inset: 0;
   margin: auto;
@@ -13,6 +13,12 @@
   border-radius: 16px;
   padding: 20px 20px;
   background-color: var(--less-light);
+  transition: width 0.3s linear, height 0.3s linear;
+}
+
+.edit-note-button__modal.active {
+  width: 600px;
+  height: 520px;
 }
 
 .edit-note-button__modal form {

@@ -1,6 +1,5 @@
 import templateNoteCard, { getDate } from "./templateNoteCard.js";
 
-
 const themeSwitcher = document.querySelector('.theme-switcher__icon'),
     notesContainer = document.querySelector('.notes-container'),
     addNoteButton = document.querySelector('.add-note-button__modal__note-add'),
@@ -10,7 +9,9 @@ const themeSwitcher = document.querySelector('.theme-switcher__icon'),
     forms = document.querySelectorAll('form'),
     headingInput = document.querySelector('.add-note-button__modal__note-heading'),
     descriptionInput = document.querySelector('#note-description'),
-    notesCount = document.querySelector('.notes-count');
+    notesCount = document.querySelector('.notes-count'),
+    filterButton = document.querySelector('.filter-button'),
+    filterModal = document.querySelector('.filter-modal');
 
 
 forms.forEach(form => {
@@ -44,16 +45,18 @@ themeSwitcher.addEventListener('click', function () {
 const openModal = (targetModal) => {
     return function () {
         targetModal.showModal()
+        targetModal.classList.add('active')
     }
 }
 
 const closeModal = (targetModal) => {
     return function () {
         targetModal.close()
+        targetModal.classList.remove('active')
     }
 }
 
-const addingNote = () => {
+const addNote = () => {
     const [noteCard, noteCardHeading, noteCardDescription, noteHeading, noteDescription, noteCardTimingAdded] = templateNoteCard();
     noteCardHeading.innerText = headingInput.value;
     noteCardDescription.innerText = descriptionInput.value;
@@ -75,5 +78,8 @@ const addingNote = () => {
 addNoteIcon.addEventListener('click', openModal(addNoteModal))
 closeNoteModal.addEventListener('click', closeModal(addNoteModal))
 
-addNoteButton.addEventListener('click', addingNote)
+addNoteButton.addEventListener('click', addNote)
 
+filterButton.addEventListener('click', e => {
+    filterModal.classList.toggle('active')
+})

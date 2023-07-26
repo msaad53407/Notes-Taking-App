@@ -7,7 +7,7 @@ header {
   height: 70px;
   background-color: var(--less-light);
   border-radius: 0 0 20px 20px;
-  transition: all 0.5s linear;
+  transition: all 0.3s linear;
 }
 
 .header__total-tasks {

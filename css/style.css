@@ -22,9 +22,9 @@
 }
 
 body {
-  background-color: var(--light);
-  font-family: "Poppins", sans-serif;
-  transition: all 0.5s linear;
+  background-color: var(--light) !important;
+  font-family: "Poppins", sans-serif !important;
+  transition: all 0.3s linear !important;
 }
 
 body.dark {
@@ -39,7 +39,7 @@ button {
   border: none;
 }
 
-.container {
+.custom-container {
   max-width: 1280px;
   margin: auto;
   display: flex;
@@ -52,13 +52,14 @@ main {
   background-color: var(--less-light);
   border-radius: 20px;
   width: 100%;
-  min-height: 90dvh;
+  min-height: 88dvh;
   padding: 20px;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 15px;
   margin-bottom: 10px;
-  transition: all 0.5s linear;
+  transition: all 0.3s linear;
 }
 
 main .filter {
@@ -94,4 +95,65 @@ main .notes-container {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: unset !important;
+  line-height: unset !important;
+}
+
+.filter-modal {
+  position: absolute;
+  top: -50px;
+  right: -300px;
+  transform: rotate(90deg);
+  width: 250px;
+  background-color: var(--light);
+  color: var(--dark);
+  border-radius: 16px;
+  border: 2px solid var(--dark);
+  padding: 20px;
+  transition: right 0.3s linear, top 0.3s linear, transform 0.3s linear;
+  z-index: 1;
+}
+
+.filter-modal.active {
+  transform: rotate(0deg);
+  right: 20px;
+  top: 80px;
+}
+
+.filter-modal form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.filter-modal form h4 {
+  font-size: 18px;
+}
+
+.filter-modal label {
+  display: flex;
+  gap: 15px;
+}
+
+.filter-modal form .filter-modal__submit {
+  width: 80px;
+  height: 30px;
+  background-color: var(--blue);
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
 }

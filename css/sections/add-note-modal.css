@@ -3,8 +3,8 @@
 }
 
 .notes-container__add-note-button dialog {
-  width: 600px;
-  height: 450px;
+  width: 0;
+  height: 0;
   position: fixed;
   inset: 0;
   margin: auto;
@@ -13,6 +13,12 @@
   border-radius: 16px;
   padding: 20px 20px;
   background-color: var(--less-light);
+  transition: width 0.3s linear, height 0.3s linear;
+}
+
+.notes-container__add-note-button dialog.active {
+  width: 600px;
+  height: 520px;
 }
 
 .notes-container__add-note-button dialog form {
@@ -55,6 +61,24 @@
   background-color: transparent;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.add-note-button__modal__note-description::-webkit-scrollbar {
+  width: 7px;
+}
+
+.add-note-button__modal__note-description::-webkit-progress-bar {
+  background-color: var(--light);
+}
+
+.add-note-button__modal__note-description::-webkit-scrollbar-track {
+  background-color: var(--less-light);
+  border-radius: 0 16px 16px 0;
+}
+
+.add-note-button__modal__note-description::-webkit-scrollbar-thumb {
+  background-color: var(--less-dark);
+  border-radius: 0 16px 16px 0;
 }
 
 .add-note-button__modal__note-heading:focus,

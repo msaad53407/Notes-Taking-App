@@ -40,6 +40,12 @@
   flex: 2;
   width: 100%;
   height: 100%;
+  word-break: break-all;
+  overflow-y: auto;
+}
+
+.note-card__description::-webkit-scrollbar {
+  display: none;
 }
 
 .note-card__timing {
@@ -80,6 +86,10 @@
   box-shadow: 0px 0px 5px var(--dark);
 }
 
+.note-card__options__delete:hover {
+  background-color: rgb(138, 0, 0);
+}
+
 .note-card__options__edit {
   padding: 10px;
   color: #fff;
@@ -90,4 +100,8 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 0 7px var(--dark);
+}
+
+.note-card__options__edit:hover {
+  background-color: var(--blue-hover);
 }

@@ -6,6 +6,12 @@
     <title>Notes App</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
@@ -19,7 +25,7 @@
     ></script>
   </head>
   <body>
-    <div class="container">
+    <div class="custom-container">
       <header>
         <div class="header__total-tasks">
           <p>Total Notes <span class="notes-count">Loading...</span></p>
@@ -35,7 +41,21 @@
       <main>
         <section class="filter">
           <h2>Notes</h2>
-          <i class="bx bx-filter"></i>
+          <i class="filter-button bx bx-filter"></i>
+          <div class="filter-modal">
+            <form action="#">
+              <h4>Filter By Date:</h4>
+              <label for="filter-option-1">
+                <p>Latest First --></p>
+                <input type="radio" name="filter" id="filter-option" />
+              </label>
+              <label for="filter-option-2">
+                <p>Oldest First --></p>
+                <input type="radio" name="filter" id="filter-option" />
+              </label>
+              <input type="submit" value="Apply" class="filter-modal__submit" />
+            </form>
+          </div>
         </section>
         <section class="notes-container">
           <div class="notes-container__add-note-button">
