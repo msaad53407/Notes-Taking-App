@@ -17,13 +17,12 @@
       src="https://kit.fontawesome.com/f452985fec.js"
       crossorigin="anonymous"
     ></script>
-    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="container">
       <header>
         <div class="header__total-tasks">
-          <p>Total Notes <span>12</span></p>
+          <p>Total Notes <span class="notes-count">Loading...</span></p>
         </div>
         <div class="header__search-bar">
           <input type="text" placeholder="Search Notes here..." />
@@ -48,13 +47,16 @@
                   type="text"
                   class="add-note-button__modal__note-heading"
                   placeholder="Note Title here..."
+                  required
                 />
                 <textarea
                   name="note-description"
                   class="add-note-button__modal__note-description"
+                  id="note-description"
                   cols="30"
                   rows="10"
                   placeholder="Note Description here..."
+                  required
                 ></textarea>
                 <div class="modal-buttons">
                   <input
@@ -65,72 +67,16 @@
                   <input
                     type="submit"
                     value="Add"
-                    class="add-note-button__modal__note-update"
+                    class="add-note-button__modal__note-add"
                   />
                 </div>
               </form>
             </dialog>
           </div>
-          <div class="notes-container__note-card">
-            <div class="note-card__heading">
-              <h3>Take Umbrella to Uni</h3>
-            </div>
-            <div class="note-card__description">
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Adipisci magnam eaque possimus labore!
-              </p>
-            </div>
-            <div class="note-card__timing">
-              <div class="note-card__timing__time-added">
-                <span
-                  >Added:<br />
-                  12 September 2023 at 02:45 p.m</span
-                >
-              </div>
-              <div class="note-card__timing__time-edited">
-                <span
-                  >Last edited:<br />
-                  5 July 2071 at 05:00 a.m</span
-                >
-              </div>
-            </div>
-            <div class="note-card__options">
-              <button class="note-card__options__delete">Delete</button>
-              <i class="note-card__options__edit bx bxs-edit"></i>
-              <dialog class="edit-note-button__modal">
-                <form action="#">
-                  <h3>Edit Note</h3>
-                  <input
-                    type="text"
-                    class="edit-note-button__modal__note-heading"
-                    placeholder="Note Title here..."
-                  />
-                  <textarea
-                    name="note-description"
-                    class="edit-note-button__modal__note-description"
-                    cols="30"
-                    rows="10"
-                    placeholder="Note Description here..."
-                  ></textarea>
-                  <div class="modal-buttons">
-                    <input
-                      type="button"
-                      value="Cancel"
-                      class="edit-note-button__modal__note-cancel"
-                    />
-                    <input
-                      type="submit"
-                      value="Update"
-                      class="edit-note-button__modal__note-update"
-                    />
-                  </div>
-                </form>
-              </dialog>
-            </div>
-          </div>
         </section>
       </main>
     </div>
+
+    <script src="js/script.js" type="module"></script>
   </body>
 </html>

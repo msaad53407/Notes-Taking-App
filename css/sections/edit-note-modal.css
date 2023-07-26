@@ -3,7 +3,7 @@
 }
 
 .edit-note-button__modal {
-  width: 30%;
+  width: 600px;
   height: 450px;
   position: fixed;
   inset: 0;

@@ -3,7 +3,7 @@
 }
 
 .notes-container__add-note-button dialog {
-  width: 30%;
+  width: 600px;
   height: 450px;
   position: fixed;
   inset: 0;
@@ -84,7 +84,7 @@
   box-shadow: 0 0 5px var(--dark);
 }
 
-.modal-buttons .add-note-button__modal__note-update {
+.modal-buttons .add-note-button__modal__note-add {
   background-color: var(--blue);
   outline: none;
   border: none;
@@ -101,6 +101,6 @@
   background-color: rgb(138, 0, 0);
 }
 
-.modal-buttons .add-note-button__modal__note-update:hover {
+.modal-buttons .add-note-button__modal__note-add:hover {
   background-color: var(--blue-hover);
 }
