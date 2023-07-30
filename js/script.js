@@ -11,8 +11,11 @@ const themeSwitcher = document.querySelector('.theme-switcher__icon'),
     descriptionInput = document.querySelector('#note-description'),
     notesCount = document.querySelector('.notes-count'),
     filterButton = document.querySelector('.filter-button'),
-    filterModal = document.querySelector('.filter-modal');
-
+    filterModal = document.querySelector('.filter-modal'),
+  filterOptions = document.getElementsByName('filter'),
+  filterOption1 = document.getElementById('filter-option-1'),
+  filterOption2 = document.getElementById('filter-option-2'),
+  filterSubmitButton = document.querySelector('.filter-modal__submit');
 
 forms.forEach(form => {
     form.addEventListener('submit', e => {
@@ -75,6 +78,37 @@ const addNote = () => {
     notesCount.innerText = `${(notesContainer.childElementCount) - 1}`
 }
 
+const filterNotes = () => {
+    let filterValue;
+  filterOptions.forEach(option => {
+  if (option.checked) {
+    filterValue = option.value
+  }
+  })
+  const notesArr = Array.from(document.querySelectorAll('.notes-container__note-card'));
+
+  if (filterValue === 'latest' && parseInt(notesCount.innerText) > 1) {
+    filterOption2.disabled = false
+    filterOption1.disabled = true
+    filterOption1.checked = false
+    const reversedArr = notesArr.reverse()
+    notesArr.forEach(elem => {
+  elem.remove()
+})
+reversedArr.forEach(elem => { notesContainer.insertAdjacentElement('beforeend', elem)
+})
+  } else if (filterValue === 'oldest' && parseInt(notesCount.innerText) > 1) {
+    filterOption1.disabled = false
+    filterOption2.disabled = true
+    filterOption2.checked = false
+    const reversedArr = notesArr.reverse()
+    notesArr.forEach(elem => {
+  elem.remove()
+})
+reversedArr.forEach(elem => { notesContainer.insertAdjacentElement('beforeend', elem)
+})
+}
+}
 addNoteIcon.addEventListener('click', openModal(addNoteModal))
 closeNoteModal.addEventListener('click', closeModal(addNoteModal))
 
@@ -83,3 +117,5 @@ addNoteButton.addEventListener('click', addNote)
 filterButton.addEventListener('click', e => {
     filterModal.classList.toggle('active')
 })
+
+filterSubmitButton.addEventListener('submit',filterNotes)

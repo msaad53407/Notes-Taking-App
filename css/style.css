@@ -145,7 +145,7 @@ textarea {
   gap: 15px;
 }
 
-.filter-modal form .filter-modal__submit {
+.filter-modal form .filter-modal__submit-button {
   width: 80px;
   height: 30px;
   background-color: var(--blue);
