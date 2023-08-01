@@ -1,3 +1,4 @@
+// Function which gets current date and displays them in the respective target element.
 export const getDate = (targetElement, message) => {
     let year = new Date().getFullYear(),
         monthNumber = new Date().getMonth(),
@@ -29,8 +30,13 @@ const closeModal = (targetModal) => {
         targetModal.classList.remove('active')
     }
 }
+
+// NoteId variable which will be used to generate unique note ids which will be given to the note card elements and aswell as to the data in local storage.
 let noteId = 1;
+
+// Function which creates a new note card template and returns the elements to be modified where the function will be invoked.
 const templateNoteCard = () => {
+    // Creating Element which will be used to create the note card template.
     const noteCard = document.createElement('div'),
         noteCardHeading = document.createElement('div'),
         noteCardHeadingH3 = document.createElement('h3'),
@@ -53,6 +59,7 @@ const templateNoteCard = () => {
         noteCancel = document.createElement('input'),
         noteUpdate = document.createElement('input');
 
+    // Adding classes to the note card template.
     noteCard.classList.add('notes-container__note-card')
     noteCardHeading.classList.add('note-card__heading')
     noteCardDescription.classList.add('note-card__description')
@@ -66,9 +73,10 @@ const templateNoteCard = () => {
     noteCardOptionsEdit.classList.add('note-card__options__edit')
     dialog.classList.add('edit-note-button__modal')
 
+    // Adding attributes to the note card template.
     noteCard.setAttribute('id', noteId)
-    noteHeading.classList.add('edit-note-button__modal__note-heading')
     noteHeading.setAttribute('type', 'text')
+    noteHeading.classList.add('edit-note-button__modal__note-heading')
     noteHeading.setAttribute('placeholder', 'Note Title here...')
 
 
@@ -86,6 +94,7 @@ const templateNoteCard = () => {
     noteUpdate.setAttribute('type', 'submit')
     noteUpdate.setAttribute('value', 'Update')
 
+    // Adding child elements to parent note card template.
     noteCard.insertAdjacentElement('beforeend', noteCardHeading)
     noteCard.insertAdjacentElement('beforeend', noteCardDescription)
     noteCard.insertAdjacentElement('beforeend', noteCardTiming)
@@ -112,6 +121,7 @@ const templateNoteCard = () => {
 
     dialog.appendChild(form)
 
+    // Modifying form to update note details.
     form.insertAdjacentElement('beforeend', formH3)
     formH3.innerText = 'Edit Note'
 
@@ -126,11 +136,9 @@ const templateNoteCard = () => {
     modalButtons.insertAdjacentElement('beforeend', noteCancel)
     modalButtons.insertAdjacentElement('beforeend', noteUpdate)
 
+    // Submitting form to update note details.
     form.addEventListener('submit', e => {
         e.preventDefault()
-    })
-
-    noteUpdate.addEventListener('click', e => {
         let tasksArr = JSON.parse(localStorage.getItem('tasks')) || [];
         noteCardHeadingH3.innerText = noteHeading.value
         noteCardDescriptionPara.innerText = noteDescription.value
@@ -146,9 +154,11 @@ const templateNoteCard = () => {
         dialog.close();
     })
 
+    // Event Listeners to open and close Note Edit Modal.
     noteCardOptionsEdit.addEventListener('click', openModal(dialog))
     noteCancel.addEventListener('click', closeModal(dialog))
 
+    // Event Listeners to delete note.
     noteCardOptionsDelete.addEventListener('click', e => {
         let tasksArr = JSON.parse(localStorage.getItem('tasks')) || [];
         const notesCount = document.querySelector('.notes-count');
@@ -157,7 +167,9 @@ const templateNoteCard = () => {
 
         if (tasksArr.length > 0) {
             tasksArr.forEach(task => {
+                // Here I am looping through the tasks array and whenever a task whose id becomes equal to the note card's id, the task will be removed from the array.
                 if (task.id === (parseInt(noteCard.getAttribute('id')))) {
+                    //Indexof method will get the index of the task from tasks array, which satisfy the condition.
                     tasksArr.splice(tasksArr.indexOf(task), 1)
                     localStorage.setItem('tasks', JSON.stringify(tasksArr))
                     noteCard.remove();
@@ -167,7 +179,7 @@ const templateNoteCard = () => {
         }
     })
     noteId++;
-    return [noteCard, noteCardHeadingH3, noteCardDescriptionPara, noteHeading, noteDescription, noteCardTimingAddedSpan,noteCardTimingEditedSpan, noteId]
+    return [noteCard, noteCardHeadingH3, noteCardDescriptionPara, noteHeading, noteDescription, noteCardTimingAddedSpan, noteCardTimingEditedSpan, noteId]
 }
 
 
