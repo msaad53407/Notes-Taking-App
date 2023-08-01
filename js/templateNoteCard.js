@@ -13,6 +13,7 @@ export const getDate = (targetElement, message) => {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     amPm = hours >= 12 ? 'PM' : 'AM'
     targetElement.innerHTML = `${message}: <br/> ${date} ${currentMonth} ${year} at ${hours}:${minutes} ${amPm}`
+    return targetElement.innerHTML;
 }
 
 const openModal = (targetModal) => {
@@ -28,7 +29,7 @@ const closeModal = (targetModal) => {
         targetModal.classList.remove('active')
     }
 }
-
+let noteId = 1;
 const templateNoteCard = () => {
     const noteCard = document.createElement('div'),
         noteCardHeading = document.createElement('div'),
@@ -65,6 +66,7 @@ const templateNoteCard = () => {
     noteCardOptionsEdit.classList.add('note-card__options__edit')
     dialog.classList.add('edit-note-button__modal')
 
+    noteCard.setAttribute('id', noteId)
     noteHeading.classList.add('edit-note-button__modal__note-heading')
     noteHeading.setAttribute('type', 'text')
     noteHeading.setAttribute('placeholder', 'Note Title here...')
@@ -101,7 +103,6 @@ const templateNoteCard = () => {
 
     noteCardTiming.insertAdjacentElement('beforeend', noteCardTimingEdited)
     noteCardTimingEdited.appendChild(noteCardTimingEditedSpan)
-    noteCardTimingEditedSpan.innerHTML = ``
 
     noteCardOptions.insertAdjacentElement('beforeend', noteCardOptionsDelete)
     noteCardOptionsDelete.innerText = 'Delete'
@@ -130,10 +131,18 @@ const templateNoteCard = () => {
     })
 
     noteUpdate.addEventListener('click', e => {
+        let tasksArr = JSON.parse(localStorage.getItem('tasks')) || [];
         noteCardHeadingH3.innerText = noteHeading.value
         noteCardDescriptionPara.innerText = noteDescription.value
-
-        getDate(noteCardTimingEditedSpan, 'Last Edited')
+        const editDate = getDate(noteCardTimingEditedSpan, 'Last Edited')
+        tasksArr.forEach(task => {
+            if (task.id === (parseInt(noteCard.getAttribute('id')))) {
+                task.heading = noteHeading.value;
+                task.description = noteDescription.value;
+                task.timingEdited = editDate;
+                localStorage.setItem('tasks', JSON.stringify(tasksArr))
+            }
+        })
         dialog.close();
     })
 
@@ -141,13 +150,24 @@ const templateNoteCard = () => {
     noteCancel.addEventListener('click', closeModal(dialog))
 
     noteCardOptionsDelete.addEventListener('click', e => {
+        let tasksArr = JSON.parse(localStorage.getItem('tasks')) || [];
         const notesCount = document.querySelector('.notes-count');
         const notesCountNum = parseInt(notesCount.innerText)
         notesCount.innerText = notesCountNum >= 1 ? notesCountNum - 1 : notesCountNum
-        noteCard.remove()
-    })
 
-    return [noteCard, noteCardHeadingH3, noteCardDescriptionPara, noteHeading, noteDescription, noteCardTimingAddedSpan]
+        if (tasksArr.length > 0) {
+            tasksArr.forEach(task => {
+                if (task.id === (parseInt(noteCard.getAttribute('id')))) {
+                    tasksArr.splice(tasksArr.indexOf(task), 1)
+                    localStorage.setItem('tasks', JSON.stringify(tasksArr))
+                    noteCard.remove();
+                    location.reload();
+                }
+            })
+        }
+    })
+    noteId++;
+    return [noteCard, noteCardHeadingH3, noteCardDescriptionPara, noteHeading, noteDescription, noteCardTimingAddedSpan,noteCardTimingEditedSpan, noteId]
 }
 
 

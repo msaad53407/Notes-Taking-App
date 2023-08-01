@@ -5,6 +5,7 @@
 @import url("./sections/note-card.css");
 @import url("./sections/add-note-modal.css");
 @import url("./sections/edit-note-modal.css");
+@import url("./sections/filter-modal.css");
 
 :root {
   --light: #fff;
@@ -37,6 +38,23 @@ body.dark {
 button {
   outline: none;
   border: none;
+}
+
+.disabled {
+  display: none !important;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-progress-bar,
+body::-webkit-scrollbar-track {
+  background-color: var(--light);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--dark);
 }
 
 .custom-container {
@@ -93,6 +111,7 @@ main .notes-container {
   width: 100%;
   height: max-content;
   display: flex;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -106,54 +125,32 @@ textarea {
   line-height: unset !important;
 }
 
-.filter-modal {
-  position: absolute;
-  top: -50px;
-  right: -300px;
-  transform: rotate(90deg);
-  width: 250px;
-  background-color: var(--light);
-  color: var(--dark);
-  border-radius: 16px;
-  border: 2px solid var(--dark);
-  padding: 20px;
-  transition: right 0.3s linear, top 0.3s linear, transform 0.3s linear;
-  z-index: 1;
-}
-
-.filter-modal.active {
-  transform: rotate(0deg);
-  right: 20px;
-  top: 80px;
-}
-
-.filter-modal form {
-  height: 100%;
+.search-results {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 
-.filter-modal form h4 {
-  font-size: 18px;
-}
-
-.filter-modal label {
+.search__results__container {
   display: flex;
-  gap: 15px;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
 }
 
-.filter-modal form .filter-modal__submit-button {
-  width: 80px;
-  height: 30px;
-  background-color: var(--blue);
-  outline: none;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
+.search-results h3 {
+  color: var(--dark);
+}
+
+.search-results__heading__span {
+  color: var(--blue);
+}
+
+@media screen and (max-width: 860px) {
+  .notes-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }

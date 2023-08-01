@@ -28,7 +28,7 @@
     <div class="custom-container">
       <header>
         <div class="header__total-tasks">
-          <p>Total Notes <span class="notes-count">Loading...</span></p>
+          <p>Notes <span class="notes-count">Loading...</span></p>
         </div>
         <div class="header__search-bar">
           <input type="text" placeholder="Search Notes here..." />
@@ -45,15 +45,38 @@
           <div class="filter-modal">
             <form action="#" class="filter-modal__submit">
               <h4>Filter By Date:</h4>
-              <label for="filter-option-1">
-                <p>Latest First --></p>
-                <input type="radio" name="filter" id="filter-option-1" value="latest" required/>
-              </label>
-              <label for="filter-option-2">
-                <p>Oldest First --></p>
-                <input type="radio" name="filter" id="filter-option-2" value="oldest" required/>
-              </label>
-              <input type="submit" value="Apply" class="filter-modal__submit-button "/>
+              <div class="wrapper-filter">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  required
+                  name="filter"
+                  id="filter-option-1"
+                  value="latest"
+                />
+                <label class="form-check-label" for="filter-option-1">
+                  <p>Latest First</p>
+                </label>
+              </div>
+              <div class="wrapper-filter">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  required
+                  name="filter"
+                  id="filter-option-2"
+                  value="oldest"
+                />
+                <label class="form-check-label" for="filter-option-2">
+                  <p>Oldest First</p>
+                </label>
+              </div>
+
+              <input
+                type="submit"
+                value="Apply"
+                class="filter-modal__submit-button"
+              />
             </form>
           </div>
         </section>
@@ -93,6 +116,10 @@
               </form>
             </dialog>
           </div>
+        </section>
+        <section class="search-results disabled">
+          <h3>Search Results for: <span class="search-results__heading__span"></span></h3>
+          <div class="search__results__container"></div>
         </section>
       </main>
     </div>

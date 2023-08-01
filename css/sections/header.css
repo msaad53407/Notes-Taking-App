@@ -12,12 +12,15 @@ header {
 
 .header__total-tasks {
   flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .header__total-tasks p {
   font-size: 20px;
   font-weight: 500;
   color: var(--dark);
+  margin-bottom: 0 !important;
 }
 
 .header__search-bar {
@@ -43,6 +46,9 @@ header {
   color: var(--less-dark);
 }
 
+.header__search-bar input:focus {
+  border: 1px solid var(--dark);
+}
 .header__search-bar i {
   height: 40px;
   width: 60px;
@@ -71,4 +77,10 @@ header {
   font-size: 22px;
   color: var(--dark);
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px){
+  .header__total-tasks {
+    display: none;
+  }
 }
