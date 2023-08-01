@@ -29,15 +29,11 @@ const themeSwitcher = document.querySelector(".theme-switcher__icon"),
   searchResultsContainer = document.querySelector(".search__results__container"),
   searchHeading = document.querySelector(".search-results h3");
 
-forms.forEach(form => {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-  });
-});
 
 let notesArr = JSON.parse(localStorage.getItem("tasks")) || [];
 let previousSearchInputValue;
 
+// Function which opens the target modal
 const openModal = (targetModal) => {
   return function () {
     targetModal.showModal();
@@ -45,6 +41,7 @@ const openModal = (targetModal) => {
   };
 };
 
+// Function which closes the target modal
 const closeModal = (targetModal) => {
   return function () {
     targetModal.close();
@@ -53,6 +50,7 @@ const closeModal = (targetModal) => {
 };
 
 const addNotes = () => {
+  //Using Destructuring assignment to get all variables returned by templateNoteCard function.
   const [
     noteCard,
     noteCardHeading,
@@ -63,14 +61,19 @@ const addNotes = () => {
     noteCardTimingEdited,
     noteId
   ] = templateNoteCard();
+
+  // Adding required details to the noteCard
   noteCardHeading.innerText = headingInput.value;
   noteCardDescription.innerText = descriptionInput.value;
 
   noteHeading.value = noteCardHeading.innerText;
   noteDescription.value = noteCardDescription.innerText;
 
+  //Invoking date function with required arguments to get and display date when note is added.
   getDate(noteCardTimingAdded, "Added");
   notesContainer.insertAdjacentElement("beforeend", noteCard);
+
+  //Pushing the details of the note to the notesArr array to be stored in the local storage.
   notesArr.push({
     'id': (noteId - 1),
     'heading': noteCardHeading.innerText,
@@ -87,44 +90,42 @@ const addNotes = () => {
   notesCount.innerText = `${notesContainer.childElementCount - 1}`;
 };
 
+const filterFunction = (target1, target2) => {
+  // Reversing the notesArr array to reverse the order of the notes to emulate filtering functionality.
+  const notesArr = Array.from(
+    document.querySelectorAll(".notes-container__note-card")
+  );
+  target2.disabled = false;
+  target1.disabled = true;
+  target1.checked = false;
+  const reversedArr = notesArr.reverse();
+  notesArr.forEach(elem => {
+    elem.remove();
+  });
+  reversedArr.forEach(elem => {
+    notesContainer.insertAdjacentElement("beforeend", elem);
+  });
+}
+
 const filterNotes = () => {
   let filterValue;
   filterOptions.forEach(option => {
+    //Looping through the filterOptions array to find the selected filter option and setting it to the filterValue variable.
     if (option.checked) {
       filterValue = option.value;
     }
   });
-  const notesArr = Array.from(
-    document.querySelectorAll(".notes-container__note-card")
-  );
 
   if (filterValue === "latest" && parseInt(notesCount.innerText) > 1) {
-    filterOption2.disabled = false;
-    filterOption1.disabled = true;
-    filterOption1.checked = false;
-    const reversedArr = notesArr.reverse();
-    notesArr.forEach(elem => {
-      elem.remove();
-    });
-    reversedArr.forEach(elem => {
-      notesContainer.insertAdjacentElement("beforeend", elem);
-    });
+    filterFunction(filterOption1, filterOption2);
   } else if (filterValue === "oldest" && parseInt(notesCount.innerText) > 1) {
-    filterOption1.disabled = false;
-    filterOption2.disabled = true;
-    filterOption2.checked = false;
-    const reversedArr = notesArr.reverse();
-    notesArr.forEach(elem => {
-      elem.remove();
-    });
-    reversedArr.forEach(elem => {
-      notesContainer.insertAdjacentElement("beforeend", elem);
-    });
+    filterFunction(filterOption2, filterOption1);
   }
 };
 
 const getNotes = (targetArr, targetContainer) => {
   targetArr.forEach(note => {
+    // For each note in the notesArr array, creating a new noteCard element, adding necessary details and appending it to the targetContainer
     const [
       noteCard,
       noteCardHeading,
@@ -145,7 +146,9 @@ const getNotes = (targetArr, targetContainer) => {
 
 const searchNotes = () => {
   const searchInputValue = searchInput.value
+  //Filtering the notesArr array to only include notes that contain the searchInputValue in their heading or description
   const resultNotes = notesArr.filter(note => note.heading.toLowerCase().includes(searchInputValue.toLowerCase()) || note.description.toLowerCase().includes(searchInputValue.toLowerCase()))
+  //Hiding the Notes Container and showing the search results Container which contains the filtered notes.
   if (!notesContainer.classList.contains('disabled')) {
     notesContainer.classList.add("disabled");
   }
@@ -154,6 +157,7 @@ const searchNotes = () => {
   }
   if (resultNotes.length > 0) {
     if (searchInputValue !== previousSearchInputValue) {
+      // Checking if the search input value is different from the previous search input value.
       searchHeading.innerHTML = `Search Results for: <span class="search-results__heading__span">${searchInputValue}</span>`
       searchResultsContainer.innerHTML = "";
       getNotes(resultNotes, searchResultsContainer);
@@ -168,6 +172,7 @@ const searchNotes = () => {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
+  // When the page loads, get the notes from the local storage and display them in the notes container and also applys the stoerd theme.
   getNotes(notesArr, notesContainer);
   notesCount.innerText = `${notesContainer.childElementCount - 1}`;
   const theme = localStorage.getItem("theme");
@@ -179,6 +184,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Theme switcher function to change the theme of the app.
 themeSwitcher.addEventListener("click", function () {
   document.body.classList.toggle("dark");
   if (document.body.classList.contains("dark")) {
@@ -190,14 +196,16 @@ themeSwitcher.addEventListener("click", function () {
   }
 });
 
+// Event Listeners to handle all respective events.
 addNoteIcon.addEventListener("click", openModal(addNoteModal));
 closeNoteModal.addEventListener("click", closeModal(addNoteModal));
 
-addNoteForm.addEventListener("submit", addNotes);
-
-filterButton.addEventListener("click", (e) => {
-  filterModal.classList.toggle("active");
+addNoteForm.addEventListener("submit", e => {
+  e.preventDefault();
+  addNotes();
 });
+
+filterButton.addEventListener("click", () => filterModal.classList.toggle("active"));
 
 filterSubmitButton.addEventListener("submit", filterNotes);
 
