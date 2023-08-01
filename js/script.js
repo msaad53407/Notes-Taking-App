@@ -1,5 +1,6 @@
 import templateNoteCard, { getDate } from "./templateNoteCard.js";
 
+// Getting all DOM Elements to be used in the app
 const themeSwitcher = document.querySelector(".theme-switcher__icon"),
   notesContainer = document.querySelector(".notes-container"),
   addNoteForm = document.querySelector(".add-note-button__modal form"),
