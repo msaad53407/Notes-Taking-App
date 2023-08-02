@@ -11,8 +11,9 @@ export const getDate = (targetElement, message) => {
 
     hours = hours > 12 ? hours - 12 : hours;
     hours = hours < 10 ? '0' + hours : hours;
+    hours = hours === 0 ? '12' : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    amPm = hours >= 12 ? 'PM' : 'AM'
+    amPm = hours >= 12 ? 'AM' : 'PM'
     targetElement.innerHTML = `${message}: <br/> ${date} ${currentMonth} ${year} at ${hours}:${minutes} ${amPm}`
     return targetElement.innerHTML;
 }
